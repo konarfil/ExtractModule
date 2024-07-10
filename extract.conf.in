@@ -1,0 +1,20 @@
+#@description pipeline using MNL library
+#@key_label  "name"
+#@meta_label "type"
+
+[name="flreconstruct" type="flreconstruct::section"]
+experimentalSetupURN : string = "urn:snemo:demonstrator:setup:2.0"
+
+[name="flreconstruct.variantService" type="flreconstruct::section"]
+profile : string as path = "@PROJECT_BINARY_DIR@/variant.profile" 
+
+[name="flreconstruct.plugins" type="flreconstruct::section"]
+plugins : string[1] = "ExtractModule"
+ExtractModule.directory : string = "@PROJECT_BINARY_DIR@/../lib"
+
+[name="pipeline" type="dpp::chain_module"]
+modules : string[1] = "Extract"
+
+[name="Extract" type="ExtractModule"]
+source_cut_ellipse_Y : real as length = 25.0 mm
+source_cut_ellipse_Z : real as length = 30.0 mm 
